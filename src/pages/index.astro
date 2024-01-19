@@ -1,0 +1,105 @@
+---
+import Layout from '@layouts/Default.astro';
+import RecentBlogPosts from '@components/generic/RecentBlogPosts.astro';
+import MobileSocials from '@components/home/MobileSocials.astro';
+import { Pill } from '@eliancodes/brutal-ui';
+import { Button } from '@eliancodes/brutal-ui';
+import { Card } from '@eliancodes/brutal-ui';
+
+const builtWith = [
+  { name: 'Computer Graphics', url: 'https://astro.build/' },
+  { name: 'Art', url: 'https://uno.antfu.me/' },
+  {
+    name: 'Eat',
+    url: 'https://docs.astro.build/en/guides/content-collections/',
+  },
+  { name: 'Read', url: 'https://docs.astro.build/en/guides/rss/' },
+  {
+    name: 'Watch Movies',
+    url: 'https://docs.astro.build/en/guides/integrations-guide/sitemap/',
+  },
+  { name: 'Blah', url: 'https://vercel.com' },
+  { name: 'Bleh', url: 'https://www.typescriptlang.org/' },
+];
+---
+
+<Layout
+  title='Home'
+  pageTitle='Home'
+  description='A personal portfolio website'
+>
+  <main class='bg-pink p-6'>
+    <MobileSocials />
+    <section id='about' class='grid md:grid-cols-8 gap-8 mt-4'>
+      <h2 class='hidden'>About me</h2>
+
+      <div class='col-span-2'>
+        <Card>
+          <h2 class='text-2xl md:text-4xl lg:text-6xl mb-8 dm-serif'>
+          What I do
+          </h2>
+          <ul class='flex gap-4 flex-wrap'>
+            {
+              builtWith.map((item) => (
+                <li>
+                  <Pill>
+                    <a
+                      class='sanchez'
+                      href={item.url}
+                      target='_blank'
+                      title={`Go to ${item.name}`}
+                    >
+                      {item.name}
+                    </a>
+                  </Pill>
+                </li>
+              ))
+            }
+          </ul>
+        </Card>
+        
+      </div>
+      <div class='col-span-2'>
+        <Card>
+          <img  src="src/content/img/me.png"> </img>
+        </Card>
+      </div>
+            <div class='col-span-4'>
+        <Card>
+          <div class='flex flex-col justify-between items-start gap-4'>
+            <p class='mt-4 outfit text-2xl md:text-2xl lg:text-5xl'>
+            Hi I'm <Button> Insha </Button>
+            </p>
+            <p class='mt-2 outfit text-xl md:text-2xl'>
+            i'm a junior studying
+             <Pill>
+              <a class='sanchez' target='_blank'> </a>
+                    NETS
+                  </Pill> &nbsp at Penn. <Pill>
+              <a class='sanchez' target='_blank'> </a>
+                    PoliSci
+                  </Pill> 
+            </p> 
+     
+          </div>
+        </Card>
+        <br>
+         <Card>
+          <div class='flex flex-col justify-between items-start gap-4'>
+            <p class='mt-4 outfit text-2xl md:text-2xl lg:text-5xl'>
+            </p>
+            <p class='mt-2 outfit text-xl md:text-2xl'>
+            i'm a junior studying
+             <Pill>
+              <a class='sanchez' target='_blank'> </a>
+                    NETS
+                  </Pill> &nbsp at Penn
+            </p> 
+     
+          </div>
+        </Card>
+      </div>
+    </section>
+    <RecentBlogPosts />
+  </main>
+</Layout>

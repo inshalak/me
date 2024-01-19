@@ -1,0 +1,65 @@
+---
+interface Props {
+  pageTitle?: string;
+}
+
+const navigationItems = [
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog/' },
+];
+
+const socialIcons = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/inshalak',
+    icon: 'i-uil-github',
+  },
+  { name: 'RSS', url: '/feed.xml', icon: 'i-uil-rss' },
+];
+
+const { pageTitle } = Astro.props;
+---
+  <header class='border-b-4 border-black flex justify-between p-6 items-center' style='background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='22' height='24' fill='none' xmlns='http://www.w3.org/2000/svg%3E%3Cpath fill='%23fff' stroke='%23000' d='M.5.5h21v22.375H.5z'/%3E%3Cpath fill='%23000' d='M1 23h20v-2H1zM1.375 12.375h5.5V11h-5.5zM6.875 17.875h6.875V16.5H6.875zM6.875 17.875v-5.5H5.5v5.5zM9.625 5.5V4.125H8.25V5.5zM11 4.125V2.75H9.625v1.375zM19.25 12.375V11h-1.375v1.375zM17.875 11V9.625H16.5V11zM16.5 9.625V8.25h-1.375v1.375zM15.125 8.25V6.875H13.75V8.25zM13.75 6.875V5.5h-1.375v1.375zM12.375 5.5V4.125H11V5.5zM8.25 6.875V5.5H6.875v1.375zM6.875 8.25V6.875H5.5V8.25zM5.5 9.625V8.25H4.125v1.375zM4.125 11V9.625H2.75V11z'/%3E%3Cpath fill='%23000' d='M2.75 12.375V11H1.375v1.375zM15.125 17.875v-5.5H13.75v5.5zM13.75 12.375h5.5V11h-5.5z'/%3E%3C/svg%3E'");'>
+  {pageTitle && <h1 class='hidden'>{pageTitle}</h1>}
+  <a href='/' title='Back to Home'>
+    <p class='righteous md:text-5xl'>Insha</p>
+  </a>
+  <nav class='hidden md:inline-block'>
+    <h2 class='hidden'>Navigation</h2>
+    <ul class='flex gap-8 poppins'>
+      {
+        navigationItems.map((item) => (
+          <li>
+            <a
+              class='text-lg font-medium hover:text-pink hover:underline transition-all duration-150 ease-in-out'
+              href={item.url}
+              title={`Go to ${item.name}`}
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+      {
+        socialIcons.map((item) => (
+          <li>
+            <a
+              href={item.url}
+              class='hover:text-pink hover:underline font-dm-serif transition-all duration-150 ease-in-out'
+              target='_blank'
+              title={`'See @InshaLakhani on ${item.name}`}
+            >
+              <div class:list={[item.icon, 'w-6 h-6']} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <nav class='md:hidden flex'>
+    <h2 class='hidden'>Mobile Navigation</h2>
+    <ul>
+      <li><a href='/blog/'>Blog</a></li>
+    </ul>
+  </nav>
+</header>
